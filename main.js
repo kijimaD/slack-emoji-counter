@@ -4,7 +4,7 @@ var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID
 var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
 // Output columns
-var message = [
+var columns = [
   "type",
   "user",
   "text",
@@ -29,8 +29,8 @@ function Main() {
   SHEET.clear();
 
   // フィールド名設定
-  SHEET.getRange(1, 1, 1, message.length).setValues([message]);
-  SHEET.getRange(1, message.length, 1, reaction.length).setValues([reaction]);
+  SHEET.getRange(1, 1, 1, columns.length).setValues([columns]);
+  SHEET.getRange(1, columns.length, 1, reaction.length).setValues([reaction]);
 
   // 取得対象期間設定
   var startdate = '2017/4/1';
@@ -103,33 +103,33 @@ function filterMessage(data) {
   // チャット履歴の巡回
   for (var i = 0; i < data.messages.length; i++) {
     // メッセージフィールドの巡回
-    for (var j = 0; j < message.length; j++) {
+    for (var j = 0; j < columns.length; j++) {
       // フィールドによって対応を変更
-      if (!data.messages[i][message[j]]) {
+      if (!data.messages[i][columns[j]]) {
         // 対応するフィールドが定義されていない場合、空欄を配列に追加
-        if (message[j] == 'reactions') {
+        if (columns[j] == 'reactions') {
           for (var k = 0; k < reaction.length; k++) {
             message_ary.push(0);
           }
         } else {
           message_ary.push("");
         }
-      } else if (message[j] == 'ts' || message[j] == 'thread_ts') {
+      } else if (columns[j] == 'ts' || columns[j] == 'thread_ts') {
         // タイムスタンプは、Date型に変更して配列に
-        message_ary.push(unixTime2ymd(parseInt(data.messages[i][message[j]])));
-      } else if (message[j] == 'reactions') {
+        message_ary.push(unixTime2ymd(parseInt(data.messages[i][columns[j]])));
+      } else if (columns[j] == 'reactions') {
         // リアクションは、カウント対象のみを配列に追加
         for (var l = 0; l < reaction.length; l++) {
           message_ary.push(0);
-          for (var k = 0; k < data.messages[i][message[j]].length; k++) {
-            if (data.messages[i][message[j]][k]["name"] == reaction[l]) {
+          for (var k = 0; k < data.messages[i][columns[j]].length; k++) {
+            if (data.messages[i][columns[j]][k]["name"] == reaction[l]) {
               message_ary[j + l]++;
             }
           }
         }
       } else {
         // その他のフィールドは、取得した値のまま配列に追加
-        message_ary.push(data.messages[i][message[j]]);
+        message_ary.push(data.messages[i][columns[j]]);
       }
     }
     // チャンネルアレイにメッセージ情報を挿入
@@ -140,7 +140,7 @@ function filterMessage(data) {
   }
 
   // スプレッドシートに転記
-  SHEET.getRange(SHEET.getLastRow() + 1, 1, chathistory_ary.length, message.length + reaction.length - 1).setValues(chathistory_ary);
+  SHEET.getRange(SHEET.getLastRow() + 1, 1, chathistory_ary.length, columns.length + reaction.length - 1).setValues(chathistory_ary);
 
   //メッセージ件数を確認し、ページネーション
   if (chathistory_ary.length == 1000) {
