@@ -3,7 +3,7 @@ var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID
 
 var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-// Output columns
+// Output columns.
 var COLUMNS = [
   "type",
   "user",
@@ -32,17 +32,16 @@ var REACTIONS = [
 function Main() {
   SHEET.clear();
 
-  // フィールド名設定
+  // Set column names.
   SHEET.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]);
   SHEET.getRange(1, COLUMNS.length, 1, REACTIONS.length).setValues([REACTIONS]);
 
-  // 取得対象期間設定
+  // Set term.
   var startdate = '2017/4/1';
   var enddate = '2021/4/14';
   start_ts = getStartTs(startdate);
   end_ts = getEndTs(enddate);
 
-  // データ取得
   data = getChannelMessage(start_ts)
   filterMessage(data)
 }
@@ -84,8 +83,6 @@ function getChannelMessage(start_ts) {
             "channel=" + CHANNEL_ID + "&" +
             "oldest=" + start_ts + "&" +
             "count=1000&pretty=1";
-
-  // 日付をもとにチャンネル内のメッセージを取得
   var headers = {
     'Authorization': 'Bearer '+ TOKEN
   };
@@ -100,7 +97,7 @@ function getChannelMessage(start_ts) {
 }
 
 function filterMessage(data) {
-  // 2次元配列
+  // Two-dimensional array.
   var chathistory_ary = [];
   var message_ary = [];
 
@@ -119,10 +116,10 @@ function filterMessage(data) {
           message_ary.push("");
         }
       } else if (COLUMNS[j] == 'ts' || COLUMNS[j] == 'thread_ts') {
-        // タイムスタンプは、Date型に変更して配列に
+        // Timestamp: String type -> Date type
         message_ary.push(unixTime2ymd(parseInt(data.messages[i][COLUMNS[j]])));
       } else if (COLUMNS[j] == 'reactions') {
-        // リアクションは、カウント対象のみを配列に追加
+        // Add only property of REACTIONS to the array.
         for (var l = 0; l < REACTIONS.length; l++) {
           message_ary.push(0);
           for (var k = 0; k < data.messages[i][COLUMNS[j]].length; k++) {
@@ -132,21 +129,20 @@ function filterMessage(data) {
           }
         }
       } else {
-        // その他のフィールドは、取得した値のまま配列に追加
+        // When other fields, push to as it its, unprocessed.
         message_ary.push(data.messages[i][COLUMNS[j]]);
       }
     }
-    // チャンネルアレイにメッセージ情報を挿入
+
     chathistory_ary.push(message_ary);
 
-    // メッセージ配列の初期化
     message_ary = [];
   }
 
-  // スプレッドシートに転記
+  // Write to spread sheet.
   SHEET.getRange(SHEET.getLastRow() + 1, 1, chathistory_ary.length, COLUMNS.length + REACTIONS.length - 1).setValues(chathistory_ary);
 
-  //メッセージ件数を確認し、ページネーション
+  // Pagenation.
   if (chathistory_ary.length == 1000) {
     getChannelMessage(start_ts, data.messages[999]['ts']);
   }
