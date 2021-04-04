@@ -39,7 +39,7 @@ function Main() {
   end_ts = getEndTs(enddate);
 
   // データ取得
-  data = getChannelMessage(start_ts, end_ts)
+  data = getChannelMessage(start_ts)
   filterMessage(data)
 }
 
@@ -78,7 +78,7 @@ function unixTime2ymd(intTime) {
 function getChannelMessage(start_ts) {
   var url = "https://slack.com/api/conversations.history?" +
             "channel=" + CHANNEL_ID + "&" +
-            "oldest=" + start_ts + "&"
+            "oldest=" + start_ts + "&" +
             "count=1000&pretty=1";
 
   // 日付をもとにチャンネル内のメッセージを取得
@@ -92,7 +92,7 @@ function getChannelMessage(start_ts) {
   var response = UrlFetchApp.fetch(url, options);
   var json = response.getContentText();
   var data = JSON.parse(json);
-  return data
+  return data;
 }
 
 function filterMessage(data) {
