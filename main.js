@@ -79,9 +79,11 @@ function unixTime2ymd(intTime) {
   return (year + '/' + month + '/' + day + ' ' + hour + ':' + min + ':' + sec);
 }
 
-function getChannelMessage(start_ts, end_ts) {
-  var url = "https://slack.com/api/conversations.history?channel=" +
-    CHANNEL_ID + "&" + "count=1000&pretty=1";
+function getChannelMessage(start_ts) {
+  var url = "https://slack.com/api/conversations.history?" +
+            "channel=" + CHANNEL_ID + "&" +
+            "oldest=" + start_ts + "&"
+            "count=1000&pretty=1";
 
   // 日付をもとにチャンネル内のメッセージを取得
   var headers = {
