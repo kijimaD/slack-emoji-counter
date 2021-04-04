@@ -1,5 +1,5 @@
-var token = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
-var channelid = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
+var TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
+var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
 // 取り扱うシート
 var ss = SpreadsheetApp.getActiveSpreadsheet();
 var sh = ss.getActiveSheet();
@@ -80,12 +80,12 @@ function unixTime2ymd(intTime) {
 
 function getChannelMessage(start_ts, end_ts) {
   var url = "https://slack.com/api/conversations.history?channel=" +
-    channelid + "&" +
+    CHANNEL_ID + "&" +
       "count=1000&pretty=1";
 
   // 日付をもとにチャンネル内のメッセージを取得
   var headers = {
-    'Authorization': 'Bearer '+ token
+    'Authorization': 'Bearer '+ TOKEN
   };
   var options = {
     'method': 'POST',
