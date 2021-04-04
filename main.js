@@ -99,7 +99,7 @@ function getChannelMessage(start_ts) {
 function filterMessage(data) {
   // Two-dimensional array.
   var chatHistries = [];
-  var message_ary = [];
+  var messageHistories = [];
 
   // チャット履歴の巡回
   for (var i = 0; i < data.messages.length; i++) {
@@ -110,33 +110,33 @@ function filterMessage(data) {
         // 対応するフィールドが定義されていない場合、空欄を配列に追加
         if (COLUMNS[j] == 'reactions') {
           for (var k = 0; k < REACTIONS.length; k++) {
-            message_ary.push(0);
+            messageHistories.push(0);
           }
         } else {
-          message_ary.push("");
+          messageHistories.push("");
         }
       } else if (COLUMNS[j] == 'ts' || COLUMNS[j] == 'thread_ts') {
         // Timestamp: String type -> Date type
-        message_ary.push(unixTime2ymd(parseInt(data.messages[i][COLUMNS[j]])));
+        messageHistories.push(unixTime2ymd(parseInt(data.messages[i][COLUMNS[j]])));
       } else if (COLUMNS[j] == 'reactions') {
         // Add only property of REACTIONS to the array.
         for (var l = 0; l < REACTIONS.length; l++) {
-          message_ary.push(0);
+          messageHistories.push(0);
           for (var k = 0; k < data.messages[i][COLUMNS[j]].length; k++) {
             if (data.messages[i][COLUMNS[j]][k]["name"] == REACTIONS[l]) {
-              message_ary[j + l]++;
+              messageHistories[j + l]++;
             }
           }
         }
       } else {
         // When other fields, push to as it its, unprocessed.
-        message_ary.push(data.messages[i][COLUMNS[j]]);
+        messageHistories.push(data.messages[i][COLUMNS[j]]);
       }
     }
 
-    chatHistries.push(message_ary);
+    chatHistries.push(messageHistories);
 
-    message_ary = [];
+    messageHistories = [];
   }
 
   // Write to spread sheet.
