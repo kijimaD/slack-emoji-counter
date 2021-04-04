@@ -1,8 +1,7 @@
 var TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
 var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
-// 取り扱うシート
-var ss = SpreadsheetApp.getActiveSpreadsheet();
-var sh = ss.getActiveSheet();
+
+var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
 // メッセージが持つフィールドのうち出力項目を列挙
 var message = [
@@ -30,11 +29,11 @@ var reaction = [
 ];
 
 function Main() {
-  sh.clear();
+  SHEET.clear();
 
   // フィールド名設定
-  sh.getRange(1, 1, 1, message.length).setValues([message]);
-  sh.getRange(1, message.length, 1, reaction.length).setValues([reaction]);
+  SHEET.getRange(1, 1, 1, message.length).setValues([message]);
+  SHEET.getRange(1, message.length, 1, reaction.length).setValues([reaction]);
 
   // 取得対象期間設定
   var startdate = '2017/4/1';
@@ -144,7 +143,7 @@ function filterMessage(data) {
   }
 
   // スプレッドシートに転記
-  sh.getRange(sh.getLastRow() + 1, 1, chathistory_ary.length, message.length + reaction.length - 1).setValues(chathistory_ary);
+  SHEET.getRange(SHEET.getLastRow() + 1, 1, chathistory_ary.length, message.length + reaction.length - 1).setValues(chathistory_ary);
 
   //メッセージ件数を確認し、ページネーション
   if (chathistory_ary.length == 1000) {
