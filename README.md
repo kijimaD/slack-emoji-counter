@@ -6,7 +6,7 @@
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1NsYWNrXSAtLT58Q29udmVyc2F0aW9uIEFQSXwgQihHb29nbGUgU3ByZWFkIFNoZWV0KVxuICAgIENbR29vZ2xlIFNwcmVhZCBTaGVldF0gLS0-fEFnZ3JlZ2F0ZXwgRFtTbGFja10iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1NsYWNrXSAtLT58Q29udmVyc2F0aW9uIEFQSXwgQihHb29nbGUgU3ByZWFkIFNoZWV0KVxuICAgIENbR29vZ2xlIFNwcmVhZCBTaGVldF0gLS0-fEFnZ3JlZ2F0ZXwgRFtTbGFja10iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
 ## required scope
 
-![Screenshot_2021-04-04_15-58-10](https://user-images.githubusercontent.com/11595790/113501336-35160780-955f-11eb-8ec6-83728e28a64b.png)
+![Screenshot_2021-04-04_15-58-10 (1)](https://user-images.githubusercontent.com/11595790/113501998-3b5ab280-9564-11eb-841b-542870c79719.png)
 
 ## Auth test
 ```bash
