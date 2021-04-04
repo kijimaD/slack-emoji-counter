@@ -98,7 +98,7 @@ function getChannelMessage(start_ts) {
 
 function filterMessage(data) {
   // Two-dimensional array.
-  var chathistory_ary = [];
+  var chatHistries = [];
   var message_ary = [];
 
   // チャット履歴の巡回
@@ -134,16 +134,16 @@ function filterMessage(data) {
       }
     }
 
-    chathistory_ary.push(message_ary);
+    chatHistries.push(message_ary);
 
     message_ary = [];
   }
 
   // Write to spread sheet.
-  SHEET.getRange(SHEET.getLastRow() + 1, 1, chathistory_ary.length, COLUMNS.length + REACTIONS.length - 1).setValues(chathistory_ary);
+  SHEET.getRange(SHEET.getLastRow() + 1, 1, chatHistries.length, COLUMNS.length + REACTIONS.length - 1).setValues(chatHistries);
 
   // Pagenation.
-  if (chathistory_ary.length == 1000) {
+  if (chatHistries.length == 1000) {
     getChannelMessage(start_ts, data.messages[999]['ts']);
   }
 }
