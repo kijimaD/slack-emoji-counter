@@ -18,7 +18,7 @@ var columns = [
 ];
 
 // Count emojis
-var reaction = [
+var REACTIONS = [
   "notes",
   "footprints",
   "handshake",
@@ -30,7 +30,7 @@ function Main() {
 
   // フィールド名設定
   SHEET.getRange(1, 1, 1, columns.length).setValues([columns]);
-  SHEET.getRange(1, columns.length, 1, reaction.length).setValues([reaction]);
+  SHEET.getRange(1, columns.length, 1, REACTIONS.length).setValues([REACTIONS]);
 
   // 取得対象期間設定
   var startdate = '2017/4/1';
@@ -108,7 +108,7 @@ function filterMessage(data) {
       if (!data.messages[i][columns[j]]) {
         // 対応するフィールドが定義されていない場合、空欄を配列に追加
         if (columns[j] == 'reactions') {
-          for (var k = 0; k < reaction.length; k++) {
+          for (var k = 0; k < REACTIONS.length; k++) {
             message_ary.push(0);
           }
         } else {
@@ -119,10 +119,10 @@ function filterMessage(data) {
         message_ary.push(unixTime2ymd(parseInt(data.messages[i][columns[j]])));
       } else if (columns[j] == 'reactions') {
         // リアクションは、カウント対象のみを配列に追加
-        for (var l = 0; l < reaction.length; l++) {
+        for (var l = 0; l < REACTIONS.length; l++) {
           message_ary.push(0);
           for (var k = 0; k < data.messages[i][columns[j]].length; k++) {
-            if (data.messages[i][columns[j]][k]["name"] == reaction[l]) {
+            if (data.messages[i][columns[j]][k]["name"] == REACTIONS[l]) {
               message_ary[j + l]++;
             }
           }
@@ -140,7 +140,7 @@ function filterMessage(data) {
   }
 
   // スプレッドシートに転記
-  SHEET.getRange(SHEET.getLastRow() + 1, 1, chathistory_ary.length, columns.length + reaction.length - 1).setValues(chathistory_ary);
+  SHEET.getRange(SHEET.getLastRow() + 1, 1, chathistory_ary.length, columns.length + REACTIONS.length - 1).setValues(chathistory_ary);
 
   //メッセージ件数を確認し、ページネーション
   if (chathistory_ary.length == 1000) {
