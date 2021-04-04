@@ -4,9 +4,18 @@
 
 ## Overview
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1NsYWNrXSAtLT58Q29udmVyc2F0aW9uIEFQSXwgQihHb29nbGUgU3ByZWFkIFNoZWV0KVxuICAgIENbR29vZ2xlIFNwcmVhZCBTaGVldF0gLS0-fEFnZ3JlZ2F0ZXwgRFtTbGFja10iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1NsYWNrXSAtLT58Q29udmVyc2F0aW9uIEFQSXwgQihHb29nbGUgU3ByZWFkIFNoZWV0KVxuICAgIENbR29vZ2xlIFNwcmVhZCBTaGVldF0gLS0-fEFnZ3JlZ2F0ZXwgRFtTbGFja10iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
-## required scope
+
+0. (Set [Reacji Channeler](https://reacji-channeler.builtbyslack.com/))
+0. Decide counting channel
+0. Get Slack token
+0. Run GAS script(Save Google Spread Sheet + count reaction emoji)
+0. Post ranking
+
+## Required Slack token scope
 
 ![Screenshot_2021-04-04_15-58-10 (1)](https://user-images.githubusercontent.com/11595790/113501998-3b5ab280-9564-11eb-841b-542870c79719.png)
+
+- channels:history
 
 ## Auth test
 ```bash
