@@ -3,7 +3,7 @@ var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID
 
 var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-// メッセージが持つフィールドのうち出力項目を列挙
+// Output columns
 var message = [
   "type",
   "user",
@@ -11,21 +11,18 @@ var message = [
   "client_msg_id",
   "attachments",
   "edited",
-  "thread_ts",
   "reply_count",
-  "replies",
-  "subscribed",
-  "unread_count",
-  "parent_user_id",
   "ts",
   "subtype",
   "reactions"
 ];
 
-// カウントしたい絵文字を列挙
+// Count emojis
 var reaction = [
-  "eyes",
-  "pray"
+  "notes",
+  "footprints",
+  "handshake",
+  "gift"
 ];
 
 function Main() {
