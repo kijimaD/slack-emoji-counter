@@ -1,4 +1,4 @@
-function load() {
+function loadSheet() {
   var rows = SHEET.getDataRange();
   var numRows = rows.getNumRows();
   var values = rows.getValues();
@@ -9,7 +9,10 @@ function load() {
     var row = values[i];
     data.push(row);
   }
+  return data;
+}
 
+function rankingArray(data) {
   // initialize 3-dimensional array
   var rankings = new Array(REACTIONS.length)
   for(var y = 0; y < 4; y++) {
@@ -30,15 +33,11 @@ function load() {
       rankings[i][j] = rows
     }
   }
-  Logger.log(rankings)
-  return ranking
+  Logger.log(rankings);
+  return rankings;
 }
 
-function ranking() {
+function notify() {
   Logger.log("今月のランキング発表のときがやってきました。")
   Logger.log(REACTIONS[0] + "部門-+-+-+-+-+-+")
-}
-
-function post() {
-
 }
