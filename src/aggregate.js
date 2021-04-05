@@ -13,15 +13,16 @@ function loadSheet() {
 }
 
 function rankingArray(data) {
+  // [[['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']],
+  //  [['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']],
+  //  [['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']],
+  //  [['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']]]
+
   // initialize 3-dimensional array
   var rankings = new Array(REACTIONS.length)
   for(var y = 0; y < 4; y++) {
     rankings[y] = [,,]
   }
-  // [[['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']],
-  //  [['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']],
-  //  [['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']],
-  //  [['10pt', 'msg'], ['5pt', 'msg'], ['1pt', 'msg']]]
 
   for (var i = 0; i <= REACTIONS.length - 1; i++) {
     data.sort(function(a, b){return(b[COLUMNS.length + i - 1] - a[COLUMNS.length + i - 1])})
