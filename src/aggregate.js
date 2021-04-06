@@ -50,11 +50,3 @@ function notify(message) {
 
   UrlFetchApp.fetch(POST_URL, options);
 }
-
-function main2() {
-  data = loadSheet();
-  contents = makeMessage(data);
-  contents.forEach(function(content) {
-    notify(content);
-  })
-}

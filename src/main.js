@@ -55,6 +55,12 @@ function Main() {
   data = getChannelMessage(start_ts)
   chatHistories = filterMessage(data)
   writeSpreadSheet(chatHistories)
+
+  data = loadSheet();
+  contents = makeMessage(data);
+  contents.forEach(function(content) {
+    notify(content);
+  })
 }
 
 function getChannelMessage(start_ts) {
