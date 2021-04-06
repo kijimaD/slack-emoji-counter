@@ -29,7 +29,6 @@ function makeMessage(data) {
 }
 
 function notify(message) {
-  var postUrl = POST_URL;
   var username = 'Kijima';  // 通知時に表示されるユーザー名
   var icon = ':star:';  // 通知時に表示されるアイコン
 
@@ -49,7 +48,7 @@ function notify(message) {
       "payload" : payload,
     };
 
-  UrlFetchApp.fetch(postUrl, options);
+  UrlFetchApp.fetch(POST_URL, options);
 }
 
 function main2() {

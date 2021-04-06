@@ -111,17 +111,10 @@ function filterMessage(data) {
         messageHistories.push(data.messages[i][COLUMNS[j]]);
       }
     }
-
     chatHistries.push(messageHistories);
-
     messageHistories = [];
   }
 
   // Write to spread sheet.
   SHEET.getRange(SHEET.getLastRow() + 1, 1, chatHistries.length, COLUMNS.length + REACTIONS.length - 1).setValues(chatHistries);
-
-  // Pagenation.
-  if (chatHistries.length == 1000) {
-    getChannelMessage(start_ts, data.messages[999]['ts']);
-  }
 }
