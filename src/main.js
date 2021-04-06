@@ -53,7 +53,8 @@ function Main() {
   end_ts = getEndTs(enddate);
 
   data = getChannelMessage(start_ts)
-  filterMessage(data)
+  chatHistories = filterMessage(data)
+  writeSpreadSheet(chatHistories)
 }
 
 function getChannelMessage(start_ts) {
@@ -114,7 +115,9 @@ function filterMessage(data) {
     chatHistries.push(messageHistories);
     messageHistories = [];
   }
+  return chatHistries
+}
 
-  // Write to spread sheet.
+function writeSpreadSheet(chatHistries) {
   SHEET.getRange(SHEET.getLastRow() + 1, 1, chatHistries.length, COLUMNS.length + REACTIONS.length - 1).setValues(chatHistries);
 }
