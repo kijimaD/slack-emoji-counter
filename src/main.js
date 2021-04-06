@@ -30,6 +30,14 @@ var REACTIONS = [
   "gift"
 ];
 
+// Emoji alias
+var REACTIONS_ALIAS = [
+  "Fun",
+  "Autonomous",
+  "Team",
+  "Impress",
+]
+
 function Main() {
   SHEET.clear();
 
