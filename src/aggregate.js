@@ -13,27 +13,25 @@ function loadSheet() {
 }
 
 function makeMessage(data) {
-  var msg = "";
+  contents = []
   for (var i = 0; i <= REACTIONS.length - 1; i++) {
+    var msg = "";
     msg += (":" + REACTIONS[i] + ":" + REACTIONS_ALIAS[i] + "━━━━━━" + "\n")
     data.sort(function(a, b){return(b[COLUMNS.length + i - 1] - a[COLUMNS.length + i - 1])})
     for (var j = 0; j <= 2; j++) {
       msg += (String(j + 1) + "位: " + data[j][COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
     }
     msg += "\n"
+    contents.push(msg)
   }
-  return msg;
+  Logger.log(contents);
+  return contents;
 }
 
-function notify() {
-  data = loadSheet();
-  msg = makeMessage(data);
-  Logger.log(msg);
-
+function notify(message) {
   var postUrl = POST_URL;
   var username = 'Kijima';  // 通知時に表示されるユーザー名
   var icon = ':star:';  // 通知時に表示されるアイコン
-  var message = msg;  // 投稿メッセージ
 
   var jsonData =
     {
@@ -48,8 +46,16 @@ function notify() {
     {
       "method" : "post",
       "contentType" : "application/json",
-      "payload" : payload
+      "payload" : payload,
     };
 
   UrlFetchApp.fetch(postUrl, options);
+}
+
+function main2() {
+  data = loadSheet();
+  contents = makeMessage(data);
+  contents.forEach(function(content) {
+    notify(content);
+  })
 }
