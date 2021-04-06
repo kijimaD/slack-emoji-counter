@@ -46,12 +46,7 @@ function Main() {
   SHEET.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]);
   SHEET.getRange(1, COLUMNS.length, 1, REACTIONS.length).setValues([REACTIONS]);
 
-  // Set term.
-  var startdate = '2017/4/1';
-  var enddate = '2021/4/14';
-  start_ts = getStartTs(startdate);
-  end_ts = getEndTs(enddate);
-
+  start_ts = getStartTs(lastMonth());
   data = getChannelMessage(start_ts)
   chatHistories = filterMessage(data)
   writeSpreadSheet(chatHistories)

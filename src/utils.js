@@ -18,6 +18,12 @@ function getEndTs(val) {
   return end_ts;
 }
 
+function lastMonth() {
+  var date = new Date();
+  var last_month = new Date(date.getFullYear(), date.getMonth()- 1, date.getDate());
+  return last_month.getFullYear()+ "/" +last_month.getMonth()+ "/" + last_month.getDate();
+}
+
 function unixTime2ymd(intTime) {
   var d = new Date(intTime * 1000);
   var year = d.getFullYear();
