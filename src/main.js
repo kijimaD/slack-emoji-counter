@@ -51,10 +51,10 @@ function main(start) {
   var chatHistories = filterMessage(data);
   writeSpreadSheet(chatHistories);
 
-  var sheetData = loadSheet();
-  var contents = makeMessage(sheetData);
+  var sheetData = Msg.loadSheet();
+  var contents = Msg.makeMessage(sheetData);
   contents.forEach(function(content) {
-    notify(content);
+    Msg.notify(content);
   })
 }
 
