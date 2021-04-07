@@ -29,13 +29,8 @@ function makeMessage(data) {
 }
 
 function notify(message) {
-  var username = 'Kijima';  // 通知時に表示されるユーザー名
-  var icon = ':star:';  // 通知時に表示されるアイコン
-
   var jsonData =
     {
-      "username" : username,
-      "icon_emoji": icon,
       "text" : message,
       "unfurl_links" : true,
     };
