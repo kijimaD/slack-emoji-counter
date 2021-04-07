@@ -39,23 +39,31 @@ var REACTIONS_ALIAS = [
   "Impress",
 ]
 
-function Main() {
+function main(start) {
   SHEET.clear();
 
   // Set column names.
   SHEET.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]);
   SHEET.getRange(1, COLUMNS.length, 1, REACTIONS.length).setValues([REACTIONS]);
 
-  start_ts = getStartTs(lastMonth());
-  data = getChannelMessage(start_ts)
-  chatHistories = filterMessage(data)
-  writeSpreadSheet(chatHistories)
+  start_ts = getStartTs(start);
+  data = getChannelMessage(start_ts);
+  chatHistories = filterMessage(data);
+  writeSpreadSheet(chatHistories);
 
   data = loadSheet();
   contents = makeMessage(data);
   contents.forEach(function(content) {
     notify(content);
   })
+}
+
+function month() {
+  main(lastMonth());
+}
+
+function week() {
+  main(lastWeek());
 }
 
 function getChannelMessage(start_ts) {

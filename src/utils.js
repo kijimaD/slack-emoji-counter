@@ -20,8 +20,14 @@ function getEndTs(val) {
 
 function lastMonth() {
   var date = new Date();
-  var last_month = new Date(date.getFullYear(), date.getMonth()- 1, date.getDate());
+  var last_month = new Date(date.getFullYear(), date.getMonth() - 1, date.getDate());
   return last_month.getFullYear()+ "/" +last_month.getMonth()+ "/" + last_month.getDate();
+}
+
+function lastWeek() {
+  var date = new Date();
+  var last_week = new Date(date.getFullYear(), date.getMonth(), date.getDate() - 7);
+  return last_week.getFullYear()+ "/" +last_week.getMonth()+ "/" + last_week.getDate();
 }
 
 function unixTime2ymd(intTime) {
