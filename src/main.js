@@ -46,7 +46,7 @@ function main(start) {
   SHEET.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]);
   SHEET.getRange(1, COLUMNS.length, 1, REACTIONS.length).setValues([REACTIONS]);
 
-  var start_ts = getStartTs(start);
+  var start_ts = Utils.getStartTs(start);
   var data = getChannelMessage(start_ts);
   var chatHistories = filterMessage(data);
   writeSpreadSheet(chatHistories);
@@ -59,11 +59,11 @@ function main(start) {
 }
 
 function month() {
-  main(lastMonth());
+  main(Utils.lastMonth());
 }
 
 function week() {
-  main(lastWeek());
+  main(Utils.lastWeek());
 }
 
 function getChannelMessage(start_ts) {
@@ -105,7 +105,7 @@ function filterMessage(data) {
         }
       } else if (COLUMNS[j] == 'ts' || COLUMNS[j] == 'thread_ts') {
         // Timestamp: String type -> Date type
-        messageHistories.push(unixTime2ymd(parseInt(data.messages[i][COLUMNS[j]])));
+        messageHistories.push(Utils.unixTime2ymd(parseInt(data.messages[i][COLUMNS[j]])));
       } else if (COLUMNS[j] == 'reactions') {
         // Add only property of REACTIONS to the array.
         for (var l = 0; l < REACTIONS.length; l++) {
