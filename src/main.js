@@ -36,7 +36,7 @@ var REACTIONS_ALIAS = [
   "Fun",
   "Autonomous",
   "Team",
-  "Impress",
+  "Impress"
 ]
 
 function main(start) {
@@ -51,8 +51,8 @@ function main(start) {
   var chatHistories = filterMessage(data);
   writeSpreadSheet(chatHistories);
 
-  var data = loadSheet();
-  var contents = makeMessage(data);
+  var sheetData = loadSheet();
+  var contents = makeMessage(sheetData);
   contents.forEach(function(content) {
     notify(content);
   })
@@ -76,7 +76,7 @@ function getChannelMessage(start_ts) {
   };
   var options = {
     'method': 'POST',
-    'headers': headers,
+    'headers': headers
   };
   var response = UrlFetchApp.fetch(url, options);
   var json = response.getContentText();
