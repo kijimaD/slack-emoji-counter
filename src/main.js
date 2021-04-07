@@ -1,9 +1,11 @@
 var TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
 var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
+var POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
 
+// Output sheet
 var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
 
-// Output columns.
+// Output columns
 var COLUMNS = [
   "type",
   "user",
@@ -29,6 +31,14 @@ var REACTIONS = [
   "gift"
 ];
 
+// Emoji alias
+var REACTIONS_ALIAS = [
+  "Fun",
+  "Autonomous",
+  "Team",
+  "Impress",
+]
+
 function Main() {
   SHEET.clear();
 
@@ -36,46 +46,16 @@ function Main() {
   SHEET.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]);
   SHEET.getRange(1, COLUMNS.length, 1, REACTIONS.length).setValues([REACTIONS]);
 
-  // Set term.
-  var startdate = '2017/4/1';
-  var enddate = '2021/4/14';
-  start_ts = getStartTs(startdate);
-  end_ts = getEndTs(enddate);
-
+  start_ts = getStartTs(lastMonth());
   data = getChannelMessage(start_ts)
-  filterMessage(data)
-}
+  chatHistories = filterMessage(data)
+  writeSpreadSheet(chatHistories)
 
-function getStartTs(val) {
-  var start_date = new Date(val);
-  start_date.setHours(0);
-  start_date.setMinutes(0);
-  start_date.setSeconds(0);
-  start_date.setMilliseconds(0);
-  var start_ts = start_date.getTime() / 1000;
-  return start_ts;
-}
-
-function getEndTs(val) {
-  var end_date = new Date(val);
-  end_date.setHours(23);
-  end_date.setMinutes(59);
-  end_date.setSeconds(59);
-  end_date.setMilliseconds(0);
-  var end_ts = end_date.getTime() / 1000;
-  return end_ts;
-}
-
-function unixTime2ymd(intTime) {
-  var d = new Date(intTime * 1000);
-  var year = d.getFullYear();
-  var month = d.getMonth() + 1;
-  var day = d.getDate();
-  var hour = ('0' + d.getHours()).slice(-2);
-  var min = ('0' + d.getMinutes()).slice(-2);
-  var sec = ('0' + d.getSeconds()).slice(-2);
-
-  return (year + '/' + month + '/' + day + ' ' + hour + ':' + min + ':' + sec);
+  data = loadSheet();
+  contents = makeMessage(data);
+  contents.forEach(function(content) {
+    notify(content);
+  })
 }
 
 function getChannelMessage(start_ts) {
@@ -133,17 +113,12 @@ function filterMessage(data) {
         messageHistories.push(data.messages[i][COLUMNS[j]]);
       }
     }
-
     chatHistries.push(messageHistories);
-
     messageHistories = [];
   }
+  return chatHistries
+}
 
-  // Write to spread sheet.
+function writeSpreadSheet(chatHistries) {
   SHEET.getRange(SHEET.getLastRow() + 1, 1, chatHistries.length, COLUMNS.length + REACTIONS.length - 1).setValues(chatHistries);
-
-  // Pagenation.
-  if (chatHistries.length == 1000) {
-    getChannelMessage(start_ts, data.messages[999]['ts']);
-  }
 }
