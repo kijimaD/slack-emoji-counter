@@ -13,7 +13,7 @@ function loadSheet() {
 }
 
 function makeMessage(data) {
-  contents = []
+  var contents = []
   for (var i = 0; i <= REACTIONS.length - 1; i++) {
     var msg = "";
     msg += (":" + REACTIONS[i] + ":" + REACTIONS_ALIAS[i] + "━━━━━━" + "\n")
@@ -24,7 +24,6 @@ function makeMessage(data) {
     msg += "\n"
     contents.push(msg)
   }
-  Logger.log(contents);
   return contents;
 }
 
@@ -32,7 +31,7 @@ function notify(message) {
   var jsonData =
     {
       "text" : message,
-      "unfurl_links" : true,
+      "unfurl_links" : true
     };
   var payload = JSON.stringify(jsonData);
 
@@ -40,7 +39,7 @@ function notify(message) {
     {
       "method" : "post",
       "contentType" : "application/json",
-      "payload" : payload,
+      "payload" : payload
     };
 
   UrlFetchApp.fetch(POST_URL, options);

@@ -110,8 +110,8 @@ function filterMessage(data) {
         // Add only property of REACTIONS to the array.
         for (var l = 0; l < REACTIONS.length; l++) {
           messageHistories.push(0);
-          for (var k = 0; k < data.messages[i][COLUMNS[j]].length; k++) {
-            if (data.messages[i][COLUMNS[j]][k]["name"] == REACTIONS[l]) {
+          for (var m = 0; m < data.messages[i][COLUMNS[j]].length; m++) {
+            if (data.messages[i][COLUMNS[j]][m]["name"] == REACTIONS[l]) {
               messageHistories[j + l]++;
             }
           }
