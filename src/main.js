@@ -46,13 +46,13 @@ function main(start) {
   SHEET.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]);
   SHEET.getRange(1, COLUMNS.length, 1, REACTIONS.length).setValues([REACTIONS]);
 
-  start_ts = getStartTs(start);
-  data = getChannelMessage(start_ts);
-  chatHistories = filterMessage(data);
+  var start_ts = getStartTs(start);
+  var data = getChannelMessage(start_ts);
+  var chatHistories = filterMessage(data);
   writeSpreadSheet(chatHistories);
 
-  data = loadSheet();
-  contents = makeMessage(data);
+  var data = loadSheet();
+  var contents = makeMessage(data);
   contents.forEach(function(content) {
     notify(content);
   })
