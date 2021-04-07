@@ -1,12 +1,7 @@
 name: eslint
 
 on:
-  push:
-    branches:
-    - master
-  pull_request:
-    branches:
-    - master
+  push
 
 jobs:
   build:
@@ -24,5 +19,5 @@ jobs:
     # Run scripts
     - name: Install dependencies
       run: yarn install
-    - name: linting markdown files
+    - name: linting js files
       run: yarn eslint src/*.js
