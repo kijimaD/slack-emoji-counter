@@ -45,7 +45,7 @@ export var Msg = (function() {
         "payload" : payload
       };
 
-    UrlFetchApp.fetch(Setting.POST_URL, options);
+    UrlFetchApp.fetch(Setting.POST_URL, options); // eslint-disable-line no-undef
   }
 
   return {

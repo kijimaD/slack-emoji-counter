@@ -1,10 +1,11 @@
 export var Settings = (function() {
+  /* eslint-disable no-undef */
   var TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN');
   var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID');
   var POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL');
 
-  // Output sheet
   var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  /* eslint-enable no-undef */
 
   // Output columns
   var COLUMNS = [

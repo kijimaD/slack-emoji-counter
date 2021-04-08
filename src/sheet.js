@@ -14,7 +14,7 @@ export var Sheet = (function() {
       'method': 'POST',
       'headers': headers
     };
-    var response = UrlFetchApp.fetch(url, options);
+    var response = UrlFetchApp.fetch(url, options); // eslint-disable-line no-undef
     var json = response.getContentText();
     var data = JSON.parse(json);
     return data;
@@ -32,7 +32,7 @@ export var Sheet = (function() {
         // フィールドによって対応を変更
         if (!data.messages[i][Setting.COLUMNS[j]]) {
           // 対応するフィールドが定義されていない場合、空欄を配列に追加
-          if (COLUMNS[j] == 'reactions') {
+          if (Setting.COLUMNS[j] == 'reactions') {
             for (var k = 0; k < Setting.REACTIONS.length; k++) {
               messageHistories.push(0);
             }
