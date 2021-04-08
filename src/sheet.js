@@ -1,11 +1,14 @@
-var Sheet = (function() {
+import Setting from "./setting.js";
+import Utils from "./utils.js";
+
+export var Sheet = (function() {
   function getChannelMessage(start_ts) {
     var url = "https://slack.com/api/conversations.history?" +
-              "channel=" + CHANNEL_ID + "&" +
+              "channel=" + Setting.CHANNEL_ID + "&" +
               "oldest=" + start_ts + "&" +
               "count=1000&pretty=1";
     var headers = {
-      'Authorization': 'Bearer '+ TOKEN
+      'Authorization': 'Bearer '+ Setting.TOKEN
     };
     var options = {
       'method': 'POST',
@@ -25,33 +28,33 @@ var Sheet = (function() {
     // チャット履歴の巡回
     for (var i = 0; i < data.messages.length; i++) {
       // メッセージフィールドの巡回
-      for (var j = 0; j < COLUMNS.length; j++) {
+      for (var j = 0; j < Setting.COLUMNS.length; j++) {
         // フィールドによって対応を変更
-        if (!data.messages[i][COLUMNS[j]]) {
+        if (!data.messages[i][Setting.COLUMNS[j]]) {
           // 対応するフィールドが定義されていない場合、空欄を配列に追加
           if (COLUMNS[j] == 'reactions') {
-            for (var k = 0; k < REACTIONS.length; k++) {
+            for (var k = 0; k < Setting.REACTIONS.length; k++) {
               messageHistories.push(0);
             }
           } else {
             messageHistories.push("");
           }
-        } else if (COLUMNS[j] == 'ts' || COLUMNS[j] == 'thread_ts') {
+        } else if (Setting.COLUMNS[j] == 'ts' || Setting.COLUMNS[j] == 'thread_ts') {
           // Timestamp: String type -> Date type
-          messageHistories.push(Utils.unixTime2ymd(parseInt(data.messages[i][COLUMNS[j]])));
-        } else if (COLUMNS[j] == 'reactions') {
+          messageHistories.push(Utils.unixTime2ymd(parseInt(data.messages[i][Setting.COLUMNS[j]])));
+        } else if (Setting.COLUMNS[j] == 'reactions') {
           // Add only property of REACTIONS to the array.
-          for (var l = 0; l < REACTIONS.length; l++) {
+          for (var l = 0; l < Setting.REACTIONS.length; l++) {
             messageHistories.push(0);
-            for (var m = 0; m < data.messages[i][COLUMNS[j]].length; m++) {
-              if (data.messages[i][COLUMNS[j]][m]["name"] == REACTIONS[l]) {
+            for (var m = 0; m < data.messages[i][Setting.COLUMNS[j]].length; m++) {
+              if (data.messages[i][Setting.COLUMNS[j]][m]["name"] == Setting.REACTIONS[l]) {
                 messageHistories[j + l]++;
               }
             }
           }
         } else {
           // When other fields, push to as it its, unprocessed.
-          messageHistories.push(data.messages[i][COLUMNS[j]]);
+          messageHistories.push(data.messages[i][Setting.COLUMNS[j]]);
         }
       }
       chatHistries.push(messageHistories);
@@ -61,7 +64,7 @@ var Sheet = (function() {
   }
 
   function writeSpreadSheet(chatHistries) {
-    SHEET.getRange(SHEET.getLastRow() + 1, 1, chatHistries.length, COLUMNS.length + REACTIONS.length - 1).setValues(chatHistries);
+    Setting.SHEET.getRange(Setting.SHEET.getLastRow() + 1, 1, chatHistries.length, Setting.COLUMNS.length + Setting.REACTIONS.length - 1).setValues(chatHistries);
   }
 
   return {

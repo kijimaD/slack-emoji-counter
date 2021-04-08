@@ -1,50 +1,14 @@
-var TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
-var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
-var POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
-
-// Output sheet
-var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
-
-// Output columns
-var COLUMNS = [
-  "type",
-  "user",
-  "text",
-  "client_msg_id",
-  "attachments",
-  "edited",
-  "thread_ts",
-  "replies",
-  "subscribed",
-  "parent_user_id",
-  "reply_count",
-  "ts",
-  "subtype",
-  "reactions"
-];
-
-// Count emojis
-var REACTIONS = [
-  "notes",
-  "footprints",
-  "handshake",
-  "gift"
-];
-
-// Emoji alias
-var REACTIONS_ALIAS = [
-  "Fun",
-  "Autonomous",
-  "Team",
-  "Impress"
-]
+import Msg from "./msg.js";
+import Sheet from "./sheet.js";
+import Utils from "./utils.js";
+import Setting from "./setting.js";
 
 function main(start) {
-  SHEET.clear();
+  Setting.SHEET.clear();
 
   // Set column names.
-  SHEET.getRange(1, 1, 1, COLUMNS.length).setValues([COLUMNS]);
-  SHEET.getRange(1, COLUMNS.length, 1, REACTIONS.length).setValues([REACTIONS]);
+  Setting.SHEET.getRange(1, 1, 1, Setting.COLUMNS.length).setValues([Setting.COLUMNS]);
+  Setting.SHEET.getRange(1, Setting.COLUMNS.length, 1, Setting.REACTIONS.length).setValues([Setting.REACTIONS]);
 
   var start_ts = Utils.getStartTs(start);
   var data = Sheet.getChannelMessage(start_ts);
