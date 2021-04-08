@@ -1,0 +1,12 @@
+{
+    "extends": "eslint:recommended",
+    "rules": {
+        "comma-dangle": "error",
+        "require-yield": "error",
+        "no-unused-vars": "off",
+    },
+    "parserOptions": {
+        sourceType: "module",
+        ecmaVersion: 2015,
+    },
+}

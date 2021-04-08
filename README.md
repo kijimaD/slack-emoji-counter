@@ -1,4 +1,4 @@
-
+[![eslint](https://github.com/kijimaD/slack-emoji-counter/actions/workflows/lint.yml/badge.svg)](https://github.com/kijimaD/slack-emoji-counter/actions/workflows/lint.yml)
 
 ![image](https://user-images.githubusercontent.com/11595790/113496072-f1a4a480-9530-11eb-9051-bc7536e80217.png)
 
