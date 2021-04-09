@@ -1,4 +1,4 @@
-export var Utils = (function() {
+var Utils = (function() {
   function getStartTs(val) {
     var start_date = new Date(val);
     start_date.setHours(0);

@@ -1,8 +1,6 @@
-import Setting from "./setting.js";
-
-export var Msg = (function() {
+var Msg = (function() {
   function loadSheet() {
-    var rows = Setting.SHEET.getDataRange();
+    var rows = SHEET.getDataRange();
     var numRows = rows.getNumRows();
     var values = rows.getValues();
 
@@ -17,12 +15,12 @@ export var Msg = (function() {
 
   function makeMessage(data) {
     var contents = []
-    for (var i = 0; i <= Setting.REACTIONS.length - 1; i++) {
+    for (var i = 0; i <= REACTIONS.length - 1; i++) {
       var msg = "";
-      msg += (":" + Setting.REACTIONS[i] + ":" + Setting.REACTIONS_ALIAS[i] + "━━━━━━" + "\n")
-      data.sort(function(a, b){return(b[Setting.COLUMNS.length + i - 1] - a[Setting.COLUMNS.length + i - 1])})
+      msg += (":" + REACTIONS[i] + ":" + REACTIONS_ALIAS[i] + "━━━━━━" + "\n")
+      data.sort(function(a, b){return(b[COLUMNS.length + i - 1] - a[COLUMNS.length + i - 1])})
       for (var j = 0; j <= 2; j++) {
-        msg += (String(j + 1) + "位: " + data[j][Setting.COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
+        msg += (String(j + 1) + "位: " + data[j][COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
       }
       msg += "\n"
       contents.push(msg)
@@ -45,7 +43,7 @@ export var Msg = (function() {
         "payload" : payload
       };
 
-    UrlFetchApp.fetch(Setting.POST_URL, options); // eslint-disable-line no-undef
+    UrlFetchApp.fetch(POST_URL, options);
   }
 
   return {

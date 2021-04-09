@@ -1,7 +1,6 @@
-import Msg from "./msg.js";
-import Sheet from "./sheet.js";
-import Utils from "./utils.js";
-import Setting from "./setting.js";
+function init() {
+  Setting.SPREAD_SHEET.insertSeet('init');
+}
 
 function main(start) {
   Setting.SHEET.clear();
