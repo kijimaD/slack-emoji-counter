@@ -4,7 +4,8 @@ var Setting = (function() {
   var POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
 
   // Output sheet
-  var SHEET = SpreadsheetApp.getActiveSpreadsheet().getActiveSheet();
+  var SPREAD_SHEET = SpreadsheetApp.getActiveSpreadsheet();
+  var SHEET = SPREAD_SHEET.getActiveSheet();
 
   // Output columns
   var COLUMNS = [
@@ -44,6 +45,7 @@ var Setting = (function() {
     TOKEN: TOKEN,
     CHANNEL_ID: CHANNEL_ID,
     POST_URL: POST_URL,
+    SPREAD_SHEET: SPREAD_SHEET,
     SHEET: SHEET,
     COLUMNS: COLUMNS,
     REACTIONS: REACTIONS,

@@ -1,5 +1,6 @@
 function init() {
-  Setting.SPREAD_SHEET.insertSeet('init');
+  Setting.SPREAD_SHEET.insertSheet('init');
+  Setting.SPREAD_SHEET.insertSheet('record');
 }
 
 function main(start) {
