@@ -7,6 +7,9 @@ var Setting = (function() {
   var SPREAD_SHEET = SpreadsheetApp.getActiveSpreadsheet();
   var SHEET = SPREAD_SHEET.getActiveSheet();
 
+  var OPTION_SHEET_NAME = "option";
+  var STORE_SHEET_NAME = 'store';
+
   // Output columns
   var COLUMNS = [
     "type",
@@ -47,6 +50,8 @@ var Setting = (function() {
     POST_URL: POST_URL,
     SPREAD_SHEET: SPREAD_SHEET,
     SHEET: SHEET,
+    OPTION_SHEET_NAME: OPTION_SHEET_NAME,
+    STORE_SHEET_NAME: STORE_SHEET_NAME,
     COLUMNS: COLUMNS,
     REACTIONS: REACTIONS,
     REACTIONS_ALIAS: REACTIONS_ALIAS
