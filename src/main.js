@@ -1,13 +1,13 @@
 function init() {
-  Setting.SPREAD_SHEET.insertSheet(Setting.OPTION_SHEET_NAME);
-  Setting.SPREAD_SHEET.getRange("1:1").setBackground('#808080');
+  Setting.SPREAD_BOOK.insertSheet(Setting.OPTION_SHEET_NAME);
+  Setting.SPREAD_BOOK.getRange("1:1").setBackground('#808080');
   var range = [
     ["channel_id", "reactions*", "reactions_alias*"],
     ["xxxx-0000...", "tada", "Conglatulations"],
     ["", "thumbsup", "Looks good"]
   ];
-  range = Setting.SPREAD_SHEET.getRange("A1:C3").setValues(range);
-  Setting.SPREAD_SHEET.insertSheet(Setting.STORE_SHEET_NAME);
+  range = Setting.SPREAD_BOOK.getRange("A1:C3").setValues(range);
+  Setting.SPREAD_BOOK.insertSheet(Setting.STORE_SHEET_NAME);
 }
 
 function main(start) {

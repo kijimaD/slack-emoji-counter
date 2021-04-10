@@ -4,8 +4,8 @@ var Setting = (function() {
   var POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
 
   // Output sheet
-  var SPREAD_SHEET = SpreadsheetApp.getActiveSpreadsheet();
-  var SHEET = SPREAD_SHEET.getActiveSheet();
+  var SPREAD_BOOK = SpreadsheetApp.getActiveSpreadsheet();
+  var SHEET = SPREAD_BOOK.getActiveSheet();
 
   var OPTION_SHEET_NAME = "option";
   var STORE_SHEET_NAME = 'store';
@@ -48,7 +48,7 @@ var Setting = (function() {
     TOKEN: TOKEN,
     CHANNEL_ID: CHANNEL_ID,
     POST_URL: POST_URL,
-    SPREAD_SHEET: SPREAD_SHEET,
+    SPREAD_BOOK: SPREAD_BOOK,
     SHEET: SHEET,
     OPTION_SHEET_NAME: OPTION_SHEET_NAME,
     STORE_SHEET_NAME: STORE_SHEET_NAME,
