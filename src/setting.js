@@ -3,14 +3,21 @@ var Setting = (function() {
   const POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
 
   const SPREAD_BOOK = SpreadsheetApp.getActiveSpreadsheet();
-
   const STORE_SHEET_NAME = 'store';
-  const STORE_SHEET = SPREAD_BOOK.getSheetByName(STORE_SHEET_NAME);
-  const OPTION_SHEET_NAME = "option";
-  const OPTION_SHEET = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
+  const OPTION_SHEET_NAME = 'option';
 
-  // メモ化したい。
-  const CHANNEL_ID = OPTION_SHEET.getRange("A2").getValue();
+  try {
+    const STORE_SHEET = SPREAD_BOOK.getSheetByName(STORE_SHEET_NAME);
+    const OPTION_SHEET = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
+
+    // TODO: momorize
+    const CHANNEL_ID = OPTION_SHEET.getRange("A2").getValue();
+    const REACTIONS = OPTION_SHEET.getRange("B2:B").getValues().filter(function(element) { return (element[0].length); });
+    const REACTIONS_ALIAS = OPTION_SHEET.getRange("C2:C").getValues().filter(function(element) { return (element[0].length); });
+  } catch(e) {
+    Logger.log(e);
+  }
+
   // Output columns
   const COLUMNS = [
     "type",
@@ -28,22 +35,6 @@ var Setting = (function() {
     "subtype",
     "reactions"
   ];
-
-  // Count emojis
-  const REACTIONS = [
-    "notes",
-    "footprints",
-    "handshake",
-    "gift"
-  ];
-
-  // Emoji alias
-  const REACTIONS_ALIAS = [
-    "Fun",
-    "Autonomous",
-    "Team",
-    "Impress"
-  ]
 
   return {
     TOKEN: TOKEN,

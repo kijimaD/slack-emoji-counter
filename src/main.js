@@ -6,7 +6,7 @@ function init() {
     ["X000...", "tada", "Conglatulations"],
     ["", "thumbsup", "Looks good"]
   ];
-  range = Setting.SPREAD_BOOK.getRange("A1:C3").setValues(range);
+  Setting.SPREAD_BOOK.getRange("A1:C3").setValues(range);
 
   Setting.SPREAD_BOOK.insertSheet(Setting.STORE_SHEET_NAME);
 }
