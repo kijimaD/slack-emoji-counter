@@ -1,7 +1,7 @@
 function init() {
   Setting.SPREAD_BOOK.insertSheet(Setting.OPTION_SHEET_NAME);
   Setting.SPREAD_BOOK.getRange("1:1").setBackground('#808080');
-  var range = [
+  const range = [
     ["channel_id", "reactions*", "reactions_alias*"],
     ["xxxx-0000...", "tada", "Conglatulations"],
     ["", "thumbsup", "Looks good"]

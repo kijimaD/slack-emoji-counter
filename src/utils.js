@@ -5,7 +5,7 @@ var Utils = (function() {
     start_date.setMinutes(0);
     start_date.setSeconds(0);
     start_date.setMilliseconds(0);
-    var start_ts = start_date.getTime() / 1000;
+    const start_ts = start_date.getTime() / 1000;
     return start_ts;
   }
 
@@ -15,7 +15,7 @@ var Utils = (function() {
     end_date.setMinutes(59);
     end_date.setSeconds(59);
     end_date.setMilliseconds(0);
-    var end_ts = end_date.getTime() / 1000;
+    const end_ts = end_date.getTime() / 1000;
     return end_ts;
   }
 
@@ -33,12 +33,12 @@ var Utils = (function() {
 
   function unixTime2ymd(intTime) {
     var d = new Date(intTime * 1000);
-    var year = d.getFullYear();
-    var month = d.getMonth() + 1;
-    var day = d.getDate();
-    var hour = ('0' + d.getHours()).slice(-2);
-    var min = ('0' + d.getMinutes()).slice(-2);
-    var sec = ('0' + d.getSeconds()).slice(-2);
+    const year = d.getFullYear();
+    const month = d.getMonth() + 1;
+    const day = d.getDate();
+    const hour = ('0' + d.getHours()).slice(-2);
+    const min = ('0' + d.getMinutes()).slice(-2);
+    const sec = ('0' + d.getSeconds()).slice(-2);
 
     return (year + '/' + month + '/' + day + ' ' + hour + ':' + min + ':' + sec);
   }

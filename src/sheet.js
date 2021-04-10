@@ -1,19 +1,19 @@
 var Sheet = (function() {
   function getChannelMessage(start_ts) {
-    var url = "https://slack.com/api/conversations.history?" +
+    const url = "https://slack.com/api/conversations.history?" +
               "channel=" + Setting.CHANNEL_ID + "&" +
               "oldest=" + start_ts + "&" +
               "count=1000&pretty=1";
-    var headers = {
+    const headers = {
       'Authorization': 'Bearer '+ Setting.TOKEN
     };
-    var options = {
+    const options = {
       'method': 'POST',
       'headers': headers
     };
-    var response = UrlFetchApp.fetch(url, options);
-    var json = response.getContentText();
-    var data = JSON.parse(json);
+    const response = UrlFetchApp.fetch(url, options);
+    const json = response.getContentText();
+    const data = JSON.parse(json);
     return data;
   }
 

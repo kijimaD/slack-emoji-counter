@@ -1,17 +1,17 @@
 var Setting = (function() {
-  var TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
-  var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
-  var POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
+  const TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
+  const CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
+  const POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
 
-  var SPREAD_BOOK = SpreadsheetApp.getActiveSpreadsheet();
-  var STORE_SHEET_NAME = 'store';
-  var STORE_SHEET = SPREAD_BOOK.getSheetByName(STORE_SHEET_NAME);
+  const SPREAD_BOOK = SpreadsheetApp.getActiveSpreadsheet();
 
-  var OPTION_SHEET_NAME = "option";
-  var OPTION_SHEET = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
+  const STORE_SHEET_NAME = 'store';
+  const STORE_SHEET = SPREAD_BOOK.getSheetByName(STORE_SHEET_NAME);
+  const OPTION_SHEET_NAME = "option";
+  const OPTION_SHEET = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
 
   // Output columns
-  var COLUMNS = [
+  const COLUMNS = [
     "type",
     "user",
     "text",
@@ -29,7 +29,7 @@ var Setting = (function() {
   ];
 
   // Count emojis
-  var REACTIONS = [
+  const REACTIONS = [
     "notes",
     "footprints",
     "handshake",
@@ -37,7 +37,7 @@ var Setting = (function() {
   ];
 
   // Emoji alias
-  var REACTIONS_ALIAS = [
+  const REACTIONS_ALIAS = [
     "Fun",
     "Autonomous",
     "Team",
