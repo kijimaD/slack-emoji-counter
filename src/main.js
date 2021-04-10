@@ -3,7 +3,7 @@ function init() {
   Setting.SPREAD_BOOK.getRange("1:1").setBackground('#808080');
   const range = [
     ["channel_id", "reactions*", "reactions_alias*"],
-    ["xxxx-0000...", "tada", "Conglatulations"],
+    ["X000...", "tada", "Conglatulations"],
     ["", "thumbsup", "Looks good"]
   ];
   range = Setting.SPREAD_BOOK.getRange("A1:C3").setValues(range);

@@ -1,6 +1,5 @@
 var Setting = (function() {
   const TOKEN = PropertiesService.getScriptProperties().getProperty('SLACK_TOKEN')
-  const CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
   const POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
 
   const SPREAD_BOOK = SpreadsheetApp.getActiveSpreadsheet();
@@ -10,6 +9,8 @@ var Setting = (function() {
   const OPTION_SHEET_NAME = "option";
   const OPTION_SHEET = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
 
+  // メモ化したい。
+  const CHANNEL_ID = OPTION_SHEET.getRange("A2").getValue();
   // Output columns
   const COLUMNS = [
     "type",
