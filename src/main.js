@@ -7,15 +7,16 @@ function init() {
     ["", "thumbsup", "Looks good"]
   ];
   range = Setting.SPREAD_BOOK.getRange("A1:C3").setValues(range);
+
   Setting.SPREAD_BOOK.insertSheet(Setting.STORE_SHEET_NAME);
 }
 
 function main(start) {
-  Setting.SHEET.clear();
+  Setting.STORE_SHEET.clear();
 
   // Set column names.
-  Setting.SHEET.getRange(1, 1, 1, Setting.COLUMNS.length).setValues([Setting.COLUMNS]);
-  Setting.SHEET.getRange(1, Setting.COLUMNS.length, 1, Setting.REACTIONS.length).setValues([Setting.REACTIONS]);
+  Setting.STORE_SHEET.getRange(1, 1, 1, Setting.COLUMNS.length).setValues([Setting.COLUMNS]);
+  Setting.STORE_SHEET.getRange(1, Setting.COLUMNS.length, 1, Setting.REACTIONS.length).setValues([Setting.REACTIONS]);
 
   var start_ts = Utils.getStartTs(start);
   var data = Sheet.getChannelMessage(start_ts);

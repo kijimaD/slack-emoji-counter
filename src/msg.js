@@ -1,6 +1,6 @@
 var Msg = (function() {
   function loadSheet() {
-    var rows = Setting.SHEET.getDataRange();
+    var rows = Setting.STORE_SHEET.getDataRange();
     var numRows = rows.getNumRows();
     var values = rows.getValues();
 

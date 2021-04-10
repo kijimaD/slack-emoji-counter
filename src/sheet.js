@@ -61,7 +61,7 @@ var Sheet = (function() {
   }
 
   function writeSpreadSheet(chatHistries) {
-    Setting.SHEET.getRange(Setting.SHEET.getLastRow() + 1, 1, chatHistries.length, Setting.COLUMNS.length + Setting.REACTIONS.length - 1).setValues(chatHistries);
+    Setting.STORE_SHEET.getRange(Setting.STORE_SHEET.getLastRow() + 1, 1, chatHistries.length, Setting.COLUMNS.length + Setting.REACTIONS.length - 1).setValues(chatHistries);
   }
 
   return {

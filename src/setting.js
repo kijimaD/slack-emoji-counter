@@ -3,12 +3,12 @@ var Setting = (function() {
   var CHANNEL_ID = PropertiesService.getScriptProperties().getProperty('CHANNEL_ID')
   var POST_URL = PropertiesService.getScriptProperties().getProperty('POST_URL')
 
-  // Output sheet
   var SPREAD_BOOK = SpreadsheetApp.getActiveSpreadsheet();
-  var SHEET = SPREAD_BOOK.getActiveSheet();
+  var STORE_SHEET_NAME = 'store';
+  var STORE_SHEET = SPREAD_BOOK.getSheetByName(STORE_SHEET_NAME);
 
   var OPTION_SHEET_NAME = "option";
-  var STORE_SHEET_NAME = 'store';
+  var OPTION_SHEET = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
 
   // Output columns
   var COLUMNS = [
@@ -49,9 +49,10 @@ var Setting = (function() {
     CHANNEL_ID: CHANNEL_ID,
     POST_URL: POST_URL,
     SPREAD_BOOK: SPREAD_BOOK,
-    SHEET: SHEET,
-    OPTION_SHEET_NAME: OPTION_SHEET_NAME,
+    STORE_SHEET: STORE_SHEET,
     STORE_SHEET_NAME: STORE_SHEET_NAME,
+    OPTION_SHEET: OPTION_SHEET,
+    OPTION_SHEET_NAME: OPTION_SHEET_NAME,
     COLUMNS: COLUMNS,
     REACTIONS: REACTIONS,
     REACTIONS_ALIAS: REACTIONS_ALIAS
