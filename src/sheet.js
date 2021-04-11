@@ -1,8 +1,17 @@
 var Sheet = (function() {
   function main(start_ts, end_ts) {
+    resetStoreSheet();
     var data = getChannelMessage(start_ts, end_ts);
     var chatHistories = filterMessage(data);
     writeSpreadSheet(chatHistories);
+  }
+
+  function resetStoreSheet() {
+    Setting.STORE_SHEET.clear();
+
+    // Set header
+    Setting.STORE_SHEET.getRange(1, 1, 1, Setting.COLUMNS.length).setValues([Setting.COLUMNS]);
+    Setting.STORE_SHEET.getRange(1, Setting.COLUMNS.length, 1, Setting.REACTIONS.length).setValues([Setting.REACTIONS]);
   }
 
   function getChannelMessage(start_ts, end_ts) {

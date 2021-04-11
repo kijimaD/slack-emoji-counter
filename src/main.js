@@ -14,14 +14,8 @@ function init() {
 }
 
 function main(start, end) {
-  Setting.STORE_SHEET.clear();
-
-  // Set column names.
-  Setting.STORE_SHEET.getRange(1, 1, 1, Setting.COLUMNS.length).setValues([Setting.COLUMNS]);
-  Setting.STORE_SHEET.getRange(1, Setting.COLUMNS.length, 1, Setting.REACTIONS.length).setValues([Setting.REACTIONS]);
-
-  var start_ts = Utils.getStartTs(start);
-  var end_ts = Utils.getEndTs(end);
+  const start_ts = Utils.getStartTs(start);
+  const end_ts = Utils.getEndTs(end);
 
   Sheet.main(start_ts, end_ts);
 }
@@ -30,12 +24,12 @@ function loadToSheet() {
   main(Setting.START_DATE, Setting.END_DATE);
 }
 
-function latest_month_and_post() {
+function latestMonthAndPost() {
   main(Utils.lastMonth());
   Msg.main();
 }
 
-function latest_week_and_post() {
+function latestWeekAndPost() {
   main(Utils.lastWeek());
   Msg.main();
 }
