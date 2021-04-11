@@ -42,6 +42,12 @@ var Setting = (function() {
     "reactions"
   ];
 
+  const INIT_OPTION_SHEET = [
+    ["channel_id(record)", "reactions*", "reactions_alias*"],
+    ["X000...", "tada", "Conglatulations"],
+    ["", "thumbsup", "Looks good"]
+  ];
+
   return {
     TOKEN: TOKEN,
     CHANNEL_ID: CHANNEL_ID,
@@ -53,6 +59,7 @@ var Setting = (function() {
     OPTION_SHEET_NAME: OPTION_SHEET_NAME,
     COLUMNS: COLUMNS,
     REACTIONS: REACTIONS,
-    REACTIONS_ALIAS: REACTIONS_ALIAS
+    REACTIONS_ALIAS: REACTIONS_ALIAS,
+    INIT_OPTION_SHEET: INIT_OPTION_SHEET
   }
 })();

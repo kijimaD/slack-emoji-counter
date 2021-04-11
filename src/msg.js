@@ -20,7 +20,10 @@ var Msg = (function() {
       msg += (":" + Setting.REACTIONS[i] + ":" + Setting.REACTIONS_ALIAS[i] + "━━━━━━" + "\n")
       data.sort(function(a, b){return(b[Setting.COLUMNS.length + i - 1] - a[Setting.COLUMNS.length + i - 1])})
       for (var j = 0; j <= 2; j++) {
-        msg += (String(j + 1) + "位: " + data[j][Setting.COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
+        // pts > 0
+        if (data[j][Setting.COLUMNS.length + i - 1] > 0) {
+          msg += (String(j + 1) + "位: " + data[j][Setting.COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
+        }
       }
       msg += "\n"
       contents.push(msg)
