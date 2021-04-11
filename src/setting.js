@@ -8,13 +8,6 @@ var Setting = (function() {
 
   try {
     const STORE_SHEET = SPREAD_BOOK.getSheetByName(STORE_SHEET_NAME);
-
-    // memorize
-    function getOptionSheet() {
-      if (getOptionSheet.memo) { return getOptionSheet.memo; }
-      getOptionSheet.memo = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
-      return getOptionSheet.memo;
-    }
     const OPTION_SHEET = getOptionSheet();
 
     const CHANNEL_ID = OPTION_SHEET.getRange("A2").getValue();
@@ -47,6 +40,13 @@ var Setting = (function() {
     ["X000...", "tada", "Conglatulations"],
     ["", "thumbsup", "Looks good"]
   ];
+
+  // Memorize
+  function getOptionSheet() {
+    if (getOptionSheet.memo) { return getOptionSheet.memo; }
+    getOptionSheet.memo = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
+    return getOptionSheet.memo;
+  }
 
   return {
     TOKEN: TOKEN,
