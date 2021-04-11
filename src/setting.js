@@ -11,8 +11,10 @@ var Setting = (function() {
     const OPTION_SHEET = getOptionSheet();
 
     const CHANNEL_ID = OPTION_SHEET.getRange("A2").getValue();
-    const REACTIONS = OPTION_SHEET.getRange("B2:B").getValues().filter(function(element) { return (element[0].length); });
-    const REACTIONS_ALIAS = OPTION_SHEET.getRange("C2:C").getValues().filter(function(element) { return (element[0].length); });
+    const START_DATE = OPTION_SHEET.getRange("B2").getValue();
+    const END_DATE = OPTION_SHEET.getRange("C2").getValue();
+    const REACTIONS = OPTION_SHEET.getRange("D2:D").getValues().filter(function(element) { return (element[0].length); });
+    const REACTIONS_ALIAS = OPTION_SHEET.getRange("E2:E").getValues().filter(function(element) { return (element[0].length); });
   } catch(e) {
     Logger.log(e);
   }
@@ -36,9 +38,9 @@ var Setting = (function() {
   ];
 
   const INIT_OPTION_SHEET = [
-    ["channel_id(record)", "reactions*", "reactions_alias*"],
-    ["X000...", "tada", "Conglatulations"],
-    ["", "thumbsup", "Looks good"]
+    ["channel_id(record)", "start(yyyy-MM-dd)", "end(yyyy-MM-dd)", "reactions*", "reactions_alias*"],
+    ["X000...", "2020-01-01", "2020-04-01", "tada", "Conglatulations"],
+    ["", "", "", "thumbsup", "Looks good"]
   ];
 
   // Memorize
@@ -60,6 +62,8 @@ var Setting = (function() {
     COLUMNS: COLUMNS,
     REACTIONS: REACTIONS,
     REACTIONS_ALIAS: REACTIONS_ALIAS,
+    START_DATE: START_DATE,
+    END_DATE: END_DATE,
     INIT_OPTION_SHEET: INIT_OPTION_SHEET
   }
 })();
