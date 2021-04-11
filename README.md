@@ -1,6 +1,16 @@
 [![eslint](https://github.com/kijimaD/slack-emoji-counter/actions/workflows/lint.yml/badge.svg)](https://github.com/kijimaD/slack-emoji-counter/actions/workflows/lint.yml)
 
-![image](https://user-images.githubusercontent.com/11595790/113496072-f1a4a480-9530-11eb-9051-bc7536e80217.png)
+Sheet interface slack emoji counter.
+
+![9UZuWyFyNQE9Z821618131717_1618131792 (1)](https://user-images.githubusercontent.com/11595790/114298576-06190c00-9af2-11eb-902f-208a08b3c259.png)
+
+↓ Run
+
+![Screenshot_2021-04-11_18-23-48](https://user-images.githubusercontent.com/11595790/114299004-116d3700-9af4-11eb-801e-4594ef806980.jpg)
+
+↓ Post(Example: Top 3)
+
+
 
 ## Overview
 [![](https://mermaid.ink/img/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1NsYWNrXSAtLT58Q29udmVyc2F0aW9uIEFQSXwgQihHb29nbGUgU3ByZWFkIFNoZWV0KVxuICAgIENbR29vZ2xlIFNwcmVhZCBTaGVldF0gLS0-fEFnZ3JlZ2F0ZXwgRFtTbGFja10iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)](https://mermaid-js.github.io/mermaid-live-editor/#/edit/eyJjb2RlIjoiZ3JhcGggVERcbiAgICBBW1NsYWNrXSAtLT58Q29udmVyc2F0aW9uIEFQSXwgQihHb29nbGUgU3ByZWFkIFNoZWV0KVxuICAgIENbR29vZ2xlIFNwcmVhZCBTaGVldF0gLS0-fEFnZ3JlZ2F0ZXwgRFtTbGFja10iLCJtZXJtYWlkIjp7fSwidXBkYXRlRWRpdG9yIjpmYWxzZX0)
