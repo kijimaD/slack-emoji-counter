@@ -1,15 +1,31 @@
 var Sheet = (function() {
-  function main(start_ts) {
-    var data = getChannelMessage(start_ts);
+  function main(start_ts, end_ts) {
+    resetStoreSheet();
+    var data = getChannelMessage(start_ts, end_ts);
     var chatHistories = filterMessage(data);
     writeSpreadSheet(chatHistories);
   }
 
-  function getChannelMessage(start_ts) {
-    const url = "https://slack.com/api/conversations.history?" +
-                "channel=" + Setting.CHANNEL_ID + "&" +
-                "oldest=" + start_ts + "&" +
-                "count=1000&pretty=1";
+  function resetStoreSheet() {
+    Setting.STORE_SHEET.clear();
+
+    // Set header
+    Setting.STORE_SHEET.getRange(1, 1, 1, Setting.COLUMNS.length).setValues([Setting.COLUMNS]);
+    Setting.STORE_SHEET.getRange(1, Setting.COLUMNS.length, 1, Setting.REACTIONS.length).setValues([Setting.REACTIONS]);
+  }
+
+  function getChannelMessage(start_ts, end_ts) {
+    var url = "https://slack.com/api/conversations.history?" +
+              "channel=" + Setting.CHANNEL_ID + "&" +
+              "count=" + 1000 + "&" +
+              "pretty=" + 1 + "&" +
+              "oldest=" + start_ts + "&";
+
+    // default newest parameter is today.
+    if (end_ts) {
+      url += "latest=" + end_ts + "&";
+    }
+
     const headers = {
       'Authorization': 'Bearer '+ Setting.TOKEN
     };

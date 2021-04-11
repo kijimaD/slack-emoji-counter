@@ -30,7 +30,7 @@ var Msg = (function() {
       for (var j = 0; j <= 2; j++) {
         // pts > 0
         if (data[j][Setting.COLUMNS.length + i - 1] > 0) {
-          msg += (String(j + 1) + "位: " + data[j][Setting.COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
+          msg += (String(j + 1) + ": " + data[j][Setting.COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
         }
       }
       msg += "\n"
