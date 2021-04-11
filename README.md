@@ -34,11 +34,11 @@ curl -X POST -H "Authorization: Bearer token0000000" "https://slack.com/api/conv
 [conversations\.history method \| Slack](https://api.slack.com/methods/conversations.history/test)
 
 ## Set GAS Property
-Set your `token` and `channel_id` and to run. New GAS visual editor not support to set property.
+Set your `SLACK_TOKEN` and `POST_URL` and to run. New GAS visual editor not support to set property.
 ```js
 function setProperty() {
   PropertiesService.getScriptProperties().setProperty("SLACK_TOKEN","xxxx-0000-...");
-  PropertiesService.getScriptProperties().setProperty("CHANNEL_ID","ABC...");
+  PropertiesService.getScriptProperties().setProperty("POST_URL","https://...");
 }
 ```
 
