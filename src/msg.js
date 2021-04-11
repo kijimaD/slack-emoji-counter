@@ -1,4 +1,12 @@
 var Msg = (function() {
+  function main() {
+    var sheetData = loadSheet();
+    var contents = makeMessage(sheetData);
+    contents.forEach(function(content) {
+      notify(content);
+    })
+  }
+
   function loadSheet() {
     var rows = Setting.STORE_SHEET.getDataRange();
     var numRows = rows.getNumRows();
@@ -50,8 +58,6 @@ var Msg = (function() {
   }
 
   return {
-    loadSheet: loadSheet,
-    makeMessage: makeMessage,
-    notify: notify
+    main: main
   }
 })();

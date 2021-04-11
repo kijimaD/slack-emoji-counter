@@ -1,9 +1,15 @@
 var Sheet = (function() {
+  function main(start_ts) {
+    var data = getChannelMessage(start_ts);
+    var chatHistories = filterMessage(data);
+    writeSpreadSheet(chatHistories);
+  }
+
   function getChannelMessage(start_ts) {
     const url = "https://slack.com/api/conversations.history?" +
-              "channel=" + Setting.CHANNEL_ID + "&" +
-              "oldest=" + start_ts + "&" +
-              "count=1000&pretty=1";
+                "channel=" + Setting.CHANNEL_ID + "&" +
+                "oldest=" + start_ts + "&" +
+                "count=1000&pretty=1";
     const headers = {
       'Authorization': 'Bearer '+ Setting.TOKEN
     };
@@ -65,8 +71,6 @@ var Sheet = (function() {
   }
 
   return {
-    getChannelMessage: getChannelMessage,
-    filterMessage: filterMessage,
-    writeSpreadSheet: writeSpreadSheet
+    main: main
   }
 })();

@@ -14,15 +14,8 @@ function main(start) {
   Setting.STORE_SHEET.getRange(1, Setting.COLUMNS.length, 1, Setting.REACTIONS.length).setValues([Setting.REACTIONS]);
 
   var start_ts = Utils.getStartTs(start);
-  var data = Sheet.getChannelMessage(start_ts);
-  var chatHistories = Sheet.filterMessage(data);
-  Sheet.writeSpreadSheet(chatHistories);
-
-  var sheetData = Msg.loadSheet();
-  var contents = Msg.makeMessage(sheetData);
-  contents.forEach(function(content) {
-    Msg.notify(content);
-  })
+  Sheet.main(start_ts);
+  Msg.main();
 }
 
 function month() {
