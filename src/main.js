@@ -1,7 +1,7 @@
 function onOpen() {
   SpreadsheetApp.getUi()
                 .createMenu('slack-emoji-counter')
-                .addItem('run', 'run')
+                .addItem('loadToSheet', 'loadToSheet')
                 .addToUi();
 }
 
@@ -24,17 +24,18 @@ function main(start, end) {
   var end_ts = Utils.getEndTs(end);
 
   Sheet.main(start_ts, end_ts);
-  Msg.main();
 }
 
-function run() {
+function loadToSheet() {
   main(Setting.START_DATE, Setting.END_DATE);
 }
 
-function month() {
+function latest_month_and_post() {
   main(Utils.lastMonth());
+  Msg.main();
 }
 
-function week() {
+function latest_week_and_post() {
   main(Utils.lastWeek());
+  Msg.main();
 }
