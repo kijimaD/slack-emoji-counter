@@ -8,9 +8,15 @@ var Setting = (function() {
 
   try {
     const STORE_SHEET = SPREAD_BOOK.getSheetByName(STORE_SHEET_NAME);
-    const OPTION_SHEET = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
 
-    // TODO: momorize
+    // memorize
+    function getOptionSheet() {
+      if (getOptionSheet.memo) { return getOptionSheet.memo; }
+      getOptionSheet.memo = SPREAD_BOOK.getSheetByName(OPTION_SHEET_NAME);
+      return getOptionSheet.memo;
+    }
+    const OPTION_SHEET = getOptionSheet();
+
     const CHANNEL_ID = OPTION_SHEET.getRange("A2").getValue();
     const REACTIONS = OPTION_SHEET.getRange("B2:B").getValues().filter(function(element) { return (element[0].length); });
     const REACTIONS_ALIAS = OPTION_SHEET.getRange("C2:C").getValues().filter(function(element) { return (element[0].length); });
