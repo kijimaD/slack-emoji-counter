@@ -1,22 +1,25 @@
-import Setting from "./setting.js";
-import Utils from "./utils.js";
+var Sheet = (function() {
+  function main(start_ts) {
+    var data = getChannelMessage(start_ts);
+    var chatHistories = filterMessage(data);
+    writeSpreadSheet(chatHistories);
+  }
 
-export var Sheet = (function() {
   function getChannelMessage(start_ts) {
-    var url = "https://slack.com/api/conversations.history?" +
-              "channel=" + Setting.CHANNEL_ID + "&" +
-              "oldest=" + start_ts + "&" +
-              "count=1000&pretty=1";
-    var headers = {
+    const url = "https://slack.com/api/conversations.history?" +
+                "channel=" + Setting.CHANNEL_ID + "&" +
+                "oldest=" + start_ts + "&" +
+                "count=1000&pretty=1";
+    const headers = {
       'Authorization': 'Bearer '+ Setting.TOKEN
     };
-    var options = {
+    const options = {
       'method': 'POST',
       'headers': headers
     };
-    var response = UrlFetchApp.fetch(url, options); // eslint-disable-line no-undef
-    var json = response.getContentText();
-    var data = JSON.parse(json);
+    const response = UrlFetchApp.fetch(url, options);
+    const json = response.getContentText();
+    const data = JSON.parse(json);
     return data;
   }
 
@@ -64,12 +67,10 @@ export var Sheet = (function() {
   }
 
   function writeSpreadSheet(chatHistries) {
-    Setting.SHEET.getRange(Setting.SHEET.getLastRow() + 1, 1, chatHistries.length, Setting.COLUMNS.length + Setting.REACTIONS.length - 1).setValues(chatHistries);
+    Setting.STORE_SHEET.getRange(Setting.STORE_SHEET.getLastRow() + 1, 1, chatHistries.length, Setting.COLUMNS.length + Setting.REACTIONS.length - 1).setValues(chatHistries);
   }
 
   return {
-    getChannelMessage: getChannelMessage,
-    filterMessage: filterMessage,
-    writeSpreadSheet: writeSpreadSheet
+    main: main
   }
 })();

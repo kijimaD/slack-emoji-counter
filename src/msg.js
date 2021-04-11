@@ -1,8 +1,14 @@
-import Setting from "./setting.js";
+var Msg = (function() {
+  function main() {
+    var sheetData = loadSheet();
+    var contents = makeMessage(sheetData);
+    contents.forEach(function(content) {
+      notify(content);
+    })
+  }
 
-export var Msg = (function() {
   function loadSheet() {
-    var rows = Setting.SHEET.getDataRange();
+    var rows = Setting.STORE_SHEET.getDataRange();
     var numRows = rows.getNumRows();
     var values = rows.getValues();
 
@@ -22,7 +28,10 @@ export var Msg = (function() {
       msg += (":" + Setting.REACTIONS[i] + ":" + Setting.REACTIONS_ALIAS[i] + "━━━━━━" + "\n")
       data.sort(function(a, b){return(b[Setting.COLUMNS.length + i - 1] - a[Setting.COLUMNS.length + i - 1])})
       for (var j = 0; j <= 2; j++) {
-        msg += (String(j + 1) + "位: " + data[j][Setting.COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
+        // pts > 0
+        if (data[j][Setting.COLUMNS.length + i - 1] > 0) {
+          msg += (String(j + 1) + "位: " + data[j][Setting.COLUMNS.length + i - 1] + "pts " + data[j][2] + " \n")
+        }
       }
       msg += "\n"
       contents.push(msg)
@@ -45,12 +54,10 @@ export var Msg = (function() {
         "payload" : payload
       };
 
-    UrlFetchApp.fetch(Setting.POST_URL, options); // eslint-disable-line no-undef
+    UrlFetchApp.fetch(Setting.POST_URL, options);
   }
 
   return {
-    loadSheet: loadSheet,
-    makeMessage: makeMessage,
-    notify: notify
+    main: main
   }
 })();

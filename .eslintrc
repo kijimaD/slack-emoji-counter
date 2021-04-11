@@ -4,6 +4,7 @@
         "comma-dangle": "error",
         "require-yield": "error",
         "no-unused-vars": "off",
+        "no-undef": "off",
     },
     "parserOptions": {
         sourceType: "module",
