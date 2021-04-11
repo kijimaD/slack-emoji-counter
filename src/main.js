@@ -1,3 +1,10 @@
+function onOpen() {
+  SpreadsheetApp.getUi()
+                .createMenu('slack-emoji-counter')
+                .addItem('run', 'run')
+                .addToUi();
+}
+
 function init() {
   Setting.SPREAD_BOOK.insertSheet(Setting.OPTION_SHEET_NAME);
   Setting.SPREAD_BOOK.getRange("1:1").setBackground('#808080');
